@@ -1,0 +1,10 @@
+<form>
+    <mat-form-field class="example-full-width" style="width:30%">
+        <input matInput placeholder="Nickname" [formControl]="nicknameInput" (keyup)="onChange()">
+    </mat-form-field>
+    <button mat-button (click)="onLockNickname()" style="margin-left: 10px;">
+        <mat-icon aria-hidden="false" aria-label="Lock nickname">
+            {{ userService.isNicknameLocked ? 'lock' : 'lock_open' }}
+        </mat-icon>
+    </button>
+</form>
