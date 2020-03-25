@@ -20,9 +20,9 @@ let messages = [
 // app.use(cors());
  
 io.on('connection', socket => {
-  socket.emit('initialMessages', messages);
+  socket.emit('initial messages', messages);
 
-  socket.on('submitMessage', messageData => {
+  socket.on('message', messageData => {
     const { content, author } = messageData;
     const newMessage = {
       id: messages.length + 1,
@@ -32,7 +32,7 @@ io.on('connection', socket => {
     }
 
     messages.push(newMessage);
-    io.emit('newMessage', [ { ...newMessage } ]);
+    io.emit('message', [ { ...newMessage } ]);
   })
 })
 

@@ -20,8 +20,8 @@ import { UserService } from './user.service';
 })
 export class MessageService {
   // make two observables from events and emit all of the new messages in messages observable
-  private initialMessages$ = this.socket.fromEvent<Message[]>('initialMessages');
-  private newMessages$ = this.socket.fromEvent<Message[]>('newMessage');
+  private initialMessages$ = this.socket.fromEvent<Message[]>('initial messages');
+  private newMessages$ = this.socket.fromEvent<Message[]>('message');
   messages$ = this.initialMessages$.pipe(merge(this.newMessages$));
   
   // lastRequestTimestamp: number = 0;
@@ -52,7 +52,7 @@ export class MessageService {
       content: messageContent,
       author: this.userService.nickname
     }
-    this.socket.emit('submitMessage', messageData);
+    this.socket.emit('message', messageData);
   }
   // public postNewMessage (messageContent: string): void {
   //   this.postNewMessageToApi(messageContent).subscribe(res => {
