@@ -16,9 +16,12 @@ import { AppComponent } from './app.component';
 import { MessageInputComponent } from './message-input/message-input.component';
 import { NicknameInputComponent } from './nickname-input/nickname-input.component';
 
+// environments
+import { environment } from '../environments/environment';
+
 // Socket.io
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-const config: SocketIoConfig = { url: '192.168.100.103:3000', options: { } }
+const config: SocketIoConfig = { url: environment.wsEndpoint, options: { } }
 
 @NgModule({
   declarations: [
