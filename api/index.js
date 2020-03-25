@@ -1,6 +1,5 @@
 const http = require('http');
 const express = require('express');
-// const cors = require('cors');
 const app = express();
 const server = http.createServer(app);
 const io = require('socket.io').listen(server);
@@ -14,10 +13,6 @@ let messages = [
     timestamp: new Date().getTime()
   }
 ]
-
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
-// app.use(cors());
  
 io.on('connection', socket => {
   socket.emit('initial messages', messages);

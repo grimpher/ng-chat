@@ -22,9 +22,6 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.messageService.messages.subscribe(messages => {
-    //   this.onNewMessages(messages);
-    // }); 
     this.messageService.messages$.subscribe(messages => {
       this.onNewMessages(messages);
     })
@@ -32,9 +29,6 @@ export class AppComponent implements OnInit {
 
   onNewMessages (newMessages: Message[]): void {
     // filter out messages that already exists
-    // newMessages = newMessages.filter(message => 
-    //   !this.messages.find(mes => mes.id === message.id)
-    // );
 
     this.messages.push(...newMessages);
 
