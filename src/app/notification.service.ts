@@ -1,23 +1,17 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NotificationService implements OnInit {
+export class NotificationService {
   originalTabTitle: string = document.title;
 
-  constructor(private messageService: MessageService) { }
-
-  ngOnInit (): void {
-    this.messageService.messages.subscribe({
-      next (messages) {
-        console.log(messages);
-        // const newMessagesCount: number = messages.length;
-        // this.onNewMessage(newMessagesCount);
-      }
+  constructor(private messageService: MessageService) {
+    this.messageService.messages.subscribe(messages => {
+      console.log(messages.length)
     })
-  }
+   }
 
   onNewMessage (newMessagesCount: number): void {
     document.title = newMessagesCount + ' new messages';

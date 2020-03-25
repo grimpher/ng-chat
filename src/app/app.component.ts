@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Message } from './interfaces/messageInterface';
 import { MessageService } from './message.service';
+import { NotificationService } from './notification.service';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +14,12 @@ export class AppComponent implements OnInit {
   messages: Message[] = [];
   isScrolledManually: boolean = false;
 
-  constructor(private messageService: MessageService) {}
+  constructor(private messageService: MessageService, private notificationService: NotificationService) {}
 
   ngOnInit() {
     this.messageService.messages.subscribe(messages => {
       this.onNewMessages(messages);
-    })
+    });
   }
 
   onNewMessages (newMessages: Message[]): void {

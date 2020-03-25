@@ -32,7 +32,7 @@ export class MessageService {
     this.fetchNewMessagesFromApi()
       .subscribe(res => {
         this.lastRequestTimestamp = new Date().getTime();
-        if(res.messages && res.messages.length)
+        if(res.messages && res.messages.length > 0)
           this.messages.next(res.messages);
       });
   }
