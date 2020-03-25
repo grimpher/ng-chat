@@ -14,7 +14,10 @@ export class AppComponent implements OnInit {
   messages: Message[] = [];
   isScrolledManually: boolean = false;
 
-  constructor(private messageService: MessageService, private notificationService: NotificationService) {}
+  constructor(
+    private messageService: MessageService, 
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit() {
     this.messageService.messages.subscribe(messages => {
