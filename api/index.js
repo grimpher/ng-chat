@@ -1,13 +1,18 @@
 const http = require('http');
 const express = require('express');
-const cors = require('cors');
+// const cors = require('cors');
 const app = express();
 const server = http.createServer(app);
 const io = require('socket.io').listen(server);
 const port = 3000;
 
 let messages = [
-
+  {
+    id: 1,
+    content: 'hello world',
+    author: 'Bot',
+    timestamp: new Date().getTime()
+  }
 ]
 
 // app.use(express.json());
@@ -15,7 +20,7 @@ let messages = [
 // app.use(cors());
  
 io.on('connection', socket => {
-  console.log('somebody connected');
+  socket.emit('initialMessages', messages)
 })
 
 server.listen(port, () => {

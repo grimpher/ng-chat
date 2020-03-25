@@ -3,6 +3,8 @@ import { Message } from './interfaces/messageInterface';
 import { MessageService } from './message.service';
 import { NotificationService } from './notification.service';
 
+import { Socket } from 'ngx-socket-io';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,9 +22,12 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // this.messageService.messages.subscribe(messages => {
+    //   this.onNewMessages(messages);
+    // }); 
     this.messageService.messages.subscribe(messages => {
       this.onNewMessages(messages);
-    });
+    })
   }
 
   onNewMessages (newMessages: Message[]): void {

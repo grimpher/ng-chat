@@ -16,6 +16,10 @@ import { AppComponent } from './app.component';
 import { MessageInputComponent } from './message-input/message-input.component';
 import { NicknameInputComponent } from './nickname-input/nickname-input.component';
 
+// Socket.io
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: '192.168.100.103:3000', options: { } }
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +34,9 @@ import { NicknameInputComponent } from './nickname-input/nickname-input.componen
 
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+
+    SocketIoModule.forRoot(config)
   ],
   providers: [
     MessageService,
