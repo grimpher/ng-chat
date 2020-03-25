@@ -8,8 +8,8 @@ export class NotificationService {
   originalTabTitle: string = document.title;
 
   constructor(private messageService: MessageService) {
-    this.messageService.messages.subscribe(messages => {
-      console.log(messages.length)
+    this.messageService.messages$.subscribe(messages => {
+      // console.log(messages.length)
     })
    }
 

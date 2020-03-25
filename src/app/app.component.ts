@@ -25,16 +25,16 @@ export class AppComponent implements OnInit {
     // this.messageService.messages.subscribe(messages => {
     //   this.onNewMessages(messages);
     // }); 
-    this.messageService.messages.subscribe(messages => {
+    this.messageService.messages$.subscribe(messages => {
       this.onNewMessages(messages);
     })
   }
 
   onNewMessages (newMessages: Message[]): void {
     // filter out messages that already exists
-    newMessages = newMessages.filter(message => 
-      !this.messages.find(mes => mes.id === message.id)
-    );
+    // newMessages = newMessages.filter(message => 
+    //   !this.messages.find(mes => mes.id === message.id)
+    // );
 
     this.messages.push(...newMessages);
 

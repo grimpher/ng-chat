@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Socket } from 'ngx-socket-io';
 
 import { Observable, Subject } from 'rxjs';
+import { merge } from 'rxjs/operators';
 
 // interfaces
 import { Message } from './interfaces/messageInterface';
@@ -18,7 +19,10 @@ import { UserService } from './user.service';
   providedIn: 'root'
 })
 export class MessageService {
-  messages = this.socket.fromEvent<Message[]>('initialMessages');
+  // make two observables from events and emit all of the new messages in messages observable
+  private initialMessages$ = this.socket.fromEvent<Message[]>('initialMessages');
+  private newMessages$ = this.socket.fromEvent<Message[]>('newMessage');
+  messages$ = this.initialMessages$.pipe(merge(this.newMessages$));
   
   // lastRequestTimestamp: number = 0;
 
@@ -43,6 +47,13 @@ export class MessageService {
   //     });
   // }
 
+  public postNewMessage (messageContent: string): void {
+    const messageData = {
+      content: messageContent,
+      author: this.userService.nickname
+    }
+    this.socket.emit('submitMessage', messageData);
+  }
   // public postNewMessage (messageContent: string): void {
   //   this.postNewMessageToApi(messageContent).subscribe(res => {
   //     this.messages.next(res.messages);

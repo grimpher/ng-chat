@@ -20,7 +20,20 @@ let messages = [
 // app.use(cors());
  
 io.on('connection', socket => {
-  socket.emit('initialMessages', messages)
+  socket.emit('initialMessages', messages);
+
+  socket.on('submitMessage', messageData => {
+    const { content, author } = messageData;
+    const newMessage = {
+      id: messages.length + 1,
+      content: content,
+      author: author,
+      timestamp: new Date().getTime()
+    }
+
+    messages.push(newMessage);
+    io.emit('newMessage', [ { ...newMessage } ]);
+  })
 })
 
 server.listen(port, () => {
