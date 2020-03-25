@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: 'http://192.168.100.103:3000'
+  wsEndpoint: '192.168.100.103:3000'
 };
 
 /*

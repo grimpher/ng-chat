@@ -3,6 +3,8 @@ import { Message } from './interfaces/messageInterface';
 import { MessageService } from './message.service';
 import { NotificationService } from './notification.service';
 
+import { Socket } from 'ngx-socket-io';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,16 +22,13 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.messageService.messages.subscribe(messages => {
+    this.messageService.messages$.subscribe(messages => {
       this.onNewMessages(messages);
-    });
+    })
   }
 
   onNewMessages (newMessages: Message[]): void {
     // filter out messages that already exists
-    newMessages = newMessages.filter(message => 
-      !this.messages.find(mes => mes.id === message.id)
-    );
 
     this.messages.push(...newMessages);
 
