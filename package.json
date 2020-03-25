@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --open --port 8080 --host 0.0.0.0 | nodemon ./api/index.js",
+    "start": "ng serve --open --port 8080 --host 0.0.0.0 | nodemon ./server/index.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
